@@ -13,6 +13,47 @@ It is **not financial advice**. Trading crypto is risky and you can lose money.
 
 ---
 
+## API Used
+
+This project uses the **Binance Public REST API** to fetch live BTC/USDT candlestick data.
+
+### Endpoint
+- `GET /api/v3/klines`
+
+### Base URLs with fallback
+- `https://api.binance.com`
+- `https://api1.binance.com`
+- `https://api2.binance.com`
+- `https://api3.binance.com`
+
+### Request used in this project
+`/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=50`
+
+- `symbol=BTCUSDT` -> Bitcoin pair against USDT
+- `interval=5m` -> 5-minute candles
+- `limit=50` -> latest 50 candles
+
+No API key is required for this public market-data endpoint.
+
+### How it is implemented
+
+In `btc_predictor.py`, the `fetch_candles()` function:
+
+1. Loops through multiple Binance endpoints for reliability.
+2. Sends requests using `requests.get(url, timeout=8)`.
+3. Accepts the first successful response (`status_code == 200`).
+4. Parses kline data and maps each candle to:
+  - `o` (open)
+  - `h` (high)
+  - `l` (low)
+  - `c` (close)
+  - `v` (volume)
+5. Raises a `ConnectionError` if all endpoints fail.
+
+The candle data is then used to calculate indicators and generate direction predictions.
+
+---
+
 ## Features
 
 ### Version 1 (btc_predictor.py)
@@ -116,7 +157,7 @@ For v2, best practice in the script itself is to prefer signals when:
 
 ## Quick Comparison
 
-| Aspect | btc_predictor.py | btc_predictor_v2.py |
+| Aspect | `btc_predictor.py` | `btc_predictor_v2.py` |
 |---|---|---|
 | Complexity | Beginner-friendly | Advanced |
 | Indicator count | 5 | 16 (weighted) |
@@ -149,13 +190,14 @@ For v2, best practice in the script itself is to prefer signals when:
 ## Notes for GitHub
 
 Suggested repository tags:
-- python
-- crypto
-- bitcoin
-- technical-analysis
-- trading-bot
-- binance
-- algorithmic-trading
+
+- `python`
+- `crypto`
+- `bitcoin`
+- `technical-analysis`
+- `trading-bot`
+- `binance`
+- `algorithmic-trading`
 
 By:
 RAM SINGHAL
