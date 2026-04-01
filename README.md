@@ -51,6 +51,7 @@ In `btc_predictor.py`, the `fetch_candles()` function:
 5. Raises a `ConnectionError` if all endpoints fail.
 
 The candle data is then used to calculate indicators and generate direction predictions.
+this can also be used for polymarket betting.
 
 ---
 
