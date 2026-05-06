@@ -101,7 +101,7 @@ this can also be used for polymarket betting.
 Install dependencies:
 
 ```bash
-pip install requests numpy
+pip install requests numpy flask
 ```
 
 ---
@@ -135,6 +135,27 @@ Candle-synced loop mode:
 ```bash
 python btc_predictor_v2.py --loop
 ```
+
+### 3) Futuristic Web Dashboard
+
+Run the web frontend + API backend:
+
+```bash
+python web_dashboard.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5000
+```
+
+The dashboard shows:
+- Live BTC/USDT price and change
+- Final direction (LONG / SHORT / SKIP)
+- Confidence and ADX regime
+- 120-candle BTC line chart
+- Full indicator matrix from the v2 predictor engine
 
 ---
 
@@ -183,6 +204,12 @@ For v2, best practice in the script itself is to prefer signals when:
 .
 ├── btc_predictor.py
 ├── btc_predictor_v2.py
+├── web_dashboard.py
+├── templates/
+│   └── index.html
+└── static/
+  ├── app.js
+  └── style.css
 └── README.md
 ```
 

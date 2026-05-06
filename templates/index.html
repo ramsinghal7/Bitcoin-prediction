@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BTC Neon Forecast Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+
+    <main class="shell">
+      <section class="topbar glass">
+        <div>
+          <p class="eyebrow">Quantum Market Monitor</p>
+          <h1>BTC Prediction Interface</h1>
+        </div>
+        <div class="status-wrap">
+          <div class="chip" id="liveState">CONNECTING</div>
+          <p class="tiny" id="updatedAt">Last update: --</p>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="glass card key-metric">
+          <p class="label">Current Price</p>
+          <h2 id="priceNow">$--</h2>
+          <p class="tiny" id="priceChange">--</p>
+        </article>
+
+        <article class="glass card key-metric">
+          <p class="label">Decision</p>
+          <h2 id="decision">--</h2>
+          <p class="tiny" id="decisionMeta">--</p>
+        </article>
+
+        <article class="glass card key-metric">
+          <p class="label">Confidence</p>
+          <h2 id="confidence">--%</h2>
+          <div class="bar-track"><div class="bar-fill" id="confBar"></div></div>
+        </article>
+
+        <article class="glass card key-metric">
+          <p class="label">Regime (ADX)</p>
+          <h2 id="regime">--</h2>
+          <p class="tiny" id="adxMeta">--</p>
+        </article>
+      </section>
+
+      <section class="chart-wrap glass card">
+        <div class="chart-head">
+          <h3>BTC Price Trajectory</h3>
+          <p class="tiny">Latest 120 candles from Binance</p>
+        </div>
+        <canvas id="priceChart"></canvas>
+      </section>
+
+      <section class="glass card indicator-card">
+        <div class="chart-head">
+          <h3>Indicator Matrix</h3>
+          <p class="tiny">Weighted engine signal breakdown</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Indicator</th>
+                <th>Signal</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody id="indicatorBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
